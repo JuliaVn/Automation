@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32407.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{0E115F84-17F8-4B64-A77B-33455AE31777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitTests", "xUnitTests\xUnitTests.csproj", "{BE4C5683-B0F2-487A-8115-87241729B4D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSTests", "MSTests\MSTests.csproj", "{35A65AA0-D909-454D-B09B-DEBE5260DCC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E115F84-17F8-4B64-A77B-33455AE31777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E115F84-17F8-4B64-A77B-33455AE31777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E115F84-17F8-4B64-A77B-33455AE31777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E115F84-17F8-4B64-A77B-33455AE31777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4C5683-B0F2-487A-8115-87241729B4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4C5683-B0F2-487A-8115-87241729B4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4C5683-B0F2-487A-8115-87241729B4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4C5683-B0F2-487A-8115-87241729B4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A65AA0-D909-454D-B09B-DEBE5260DCC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A65AA0-D909-454D-B09B-DEBE5260DCC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A65AA0-D909-454D-B09B-DEBE5260DCC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A65AA0-D909-454D-B09B-DEBE5260DCC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {840A603D-513D-41B8-A6F3-226835D58A7F}
+	EndGlobalSection
+EndGlobal
