@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace AlloTests.Pages
@@ -7,7 +8,8 @@ namespace AlloTests.Pages
     public class ProductPage : BasePage
     {
         private static readonly TimeSpan timeSpan = TimeSpan.FromSeconds(30);
-        private const string productPriceCurrent = "//div[contains(@class,'p-trade-price__current')]/span";
+        private const string productPriceOldText = "//div[contains(@class,'p-trade-price__old')]/span[@class='sum']";
+        private const string productPriceCurrentText = "//div[contains(@class,'p-trade-price__current')]/span";
         private const string productViewTitle = "//h1[@class='p-view__header-title']";
         private const string productColorLinkList = "//a[contains(@class,'p-attributes-color__link')]";
         private const string colorSectionLabel = "//span[@class='title__label']";
@@ -22,25 +24,23 @@ namespace AlloTests.Pages
             WaitVisibility(timeSpan, By.XPath(productViewTitle));
             return driver.FindElement(By.XPath(productViewTitle)).Text;
         }
-        public string GetCurrentProductPrice()
+        public double GetCurrentProductPrice()
         {
-            WaitAllElementsVisibility(timeSpan, By.XPath(productPriceCurrent));
-            string price = driver.FindElement(By.XPath(productPriceCurrent)).Text;
+            WaitVisibility(timeSpan, By.XPath(productPriceCurrentText));
+            string price = driver.FindElement(By.XPath(productPriceCurrentText)).Text;
             var regex = new Regex(@" ₴$");
-            return regex.Replace(price, "");
+            return double.Parse(regex.Replace(price, ""));
+        }
+        public double GetOldProductPrice()
+        {
+            WaitVisibility(timeSpan, By.XPath(productPriceOldText));
+            return double.Parse(driver.FindElement(By.XPath(productPriceOldText)).Text);
         }
         public void SwitchColor(string color)
         {
             WaitAllElementsVisibility(timeSpan, By.XPath(productColorLinkList));
             var resultProductColorLinkList = driver.FindElements(By.XPath(productColorLinkList));
-            foreach (var link in resultProductColorLinkList)
-            {
-                if (link.Text.Contains(color))
-                {
-                    link.Click();
-                    return;
-                }
-            }
+            resultProductColorLinkList.Where(link => link.Text.Contains(color)).ToList().ForEach(link => link.Click());
         }
         public string GetColorLabelTitle()
         {

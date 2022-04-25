@@ -56,18 +56,24 @@ namespace AlloTests.Tests
             GetHomePage().WaitPageToLoad(timeSpan);
             GetHomePage().EnterKeywordToSearch(keyword);
             GetHomePage().ClickItemFromSearchPopup(numberOfItemFromList);
-            GetResultPage().ScrollBy();
             GetResultPage().WaitPageToLoad(timeSpan);
             GetResultPage().ClickFilterDiscountCheckbox();
             GetResultPage().ClickFilterPopupButton();
-            //GetResultPage().ScrollBy(); //why it doesn't work here???
+            GetResultPage().ClickFilterPriceButton();
             GetResultPage().EnterPriceRangeFrom(priceFrom);
             GetResultPage().EnterPriceRangeTo(priceTo);
             GetResultPage().ClickFilterPopupButton();
+            foreach(var price in GetResultPage().GetItemsDiscountPriceList())
+            {
+                Assert.That(price, Is.InRange(double.Parse(priceFrom), double.Parse(priceTo)));
+            }
+            foreach(var oldPrice in GetResultPage().GetItemsOldPriceList())
+            {
+                Assert.IsTrue(oldPrice.Displayed);
+            }
             GetResultPage().ClickItemFromProductCardList(numberOfItemFromList);
             Assert.IsTrue(GetProductPage().GetProductViewTitle().ToLower().Contains(keyword));
-            Assert.That(double.Parse(GetProductPage().GetCurrentProductPrice()),
-                Is.InRange(double.Parse(priceFrom), double.Parse(priceTo)));
+            Assert.That(GetProductPage().GetCurrentProductPrice(), Is.LessThan(GetProductPage().GetOldProductPrice()));
         }
         [Test]
         public void CheckColorHasBeenChanged()
@@ -88,18 +94,25 @@ namespace AlloTests.Tests
             GetResultPage().WaitPageToLoad(timeSpan);
             GetResultPage().ClickItemFromProductCardList(numberOfItemFromList);
             GetResultPage().WaitPageToLoad(timeSpan);
+            var productName = GetProductPage().GetProductViewTitle();
+            var productPrice = GetProductPage().GetCurrentProductPrice();
+            double totalPrice = productPrice;
             GetProductPage().ClickProductBuyButton();
             Assert.IsTrue(GetCartPopupPage().GetCartPopup().Displayed);
-            Assert.IsTrue(GetCartPopupPage().GetOrderNowButton().Displayed);
-            Assert.IsTrue(GetCartPopupPage().GetComebackButton().Displayed);
+            Assert.IsTrue(productName.Equals(GetCartPopupPage().GetLastProductTitleName()));
+            Assert.IsTrue(productPrice.Equals(GetCartPopupPage().GetLastProductPrice()));
             GetCartPopupPage().ClickComebackButton();
             GetProductPage().ComebackToPreviousPage();
             GetResultPage().WaitPageToLoad(timeSpan);
             GetResultPage().ClickItemFromProductCardList(secondNumberOfItemFromList);
+            var secondProductName = GetProductPage().GetProductViewTitle();
+            var secondProductPrice = GetProductPage().GetCurrentProductPrice();
+            totalPrice += secondProductPrice;
             GetProductPage().ClickProductBuyButton();
             Assert.IsTrue(GetCartPopupPage().GetCartPopup().Displayed);
-            Assert.IsTrue(GetCartPopupPage().GetOrderNowButton().Displayed);
-            Assert.IsTrue(GetCartPopupPage().GetComebackButton().Displayed);
+            Assert.IsTrue(secondProductName.Equals(GetCartPopupPage().GetLastProductTitleName()));
+            Assert.IsTrue(secondProductPrice.Equals(GetCartPopupPage().GetLastProductPrice()));
+            Assert.IsTrue(totalPrice.Equals(GetCartPopupPage().GetTotalPrice()));
             GetCartPopupPage().CloseCartPopup();
             Assert.AreEqual(numberOfProductsInCart, GetProductPage().GetCartIconText());
         }
