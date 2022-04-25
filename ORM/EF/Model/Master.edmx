@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.BuyersInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BuyersInfo">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="CarID" />
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="CarID" Type="int" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="CarName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BuyersInf__CarID__1940BAED">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="BuyersInfo" Type="Self.BuyersInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyersInfo">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyersInf__CityI__1A34DF26">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="BuyersInfo" Type="Self.BuyersInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyersInfo">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyersInf__Perso__184C96B4">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="BuyersInfo" Type="Self.BuyersInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyersInfo">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__CityID__16644E42">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyersInfo" EntityType="Self.BuyersInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BuyersInfo].[PersonID] AS [PersonID], 
+    [BuyersInfo].[CarID] AS [CarID], 
+    [BuyersInfo].[CityID] AS [CityID], 
+    [BuyersInfo].[Year] AS [Year]
+    FROM [dbo].[BuyersInfo] AS [BuyersInfo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BuyersInf__CarID__1940BAED" Association="Self.FK__BuyersInf__CarID__1940BAED">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="BuyersInfo" EntitySet="BuyersInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyersInf__CityI__1A34DF26" Association="Self.FK__BuyersInf__CityI__1A34DF26">
+            <End Role="City" EntitySet="City" />
+            <End Role="BuyersInfo" EntitySet="BuyersInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyersInf__Perso__184C96B4" Association="Self.FK__BuyersInf__Perso__184C96B4">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="BuyersInfo" EntitySet="BuyersInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__CityID__16644E42" Association="Self.FK__Person__CityID__16644E42">
+            <End Role="City" EntitySet="City" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="CarName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BuyersInfoes" Relationship="Self.FK__BuyersInf__CarID__1940BAED" FromRole="Car" ToRole="BuyersInfo" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BuyersInfoes" Relationship="Self.FK__BuyersInf__CityI__1A34DF26" FromRole="City" ToRole="BuyersInfo" />
+          <NavigationProperty Name="People" Relationship="Self.FK__Person__CityID__16644E42" FromRole="City" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Person__CityID__16644E42" FromRole="Person" ToRole="City" />
+          <NavigationProperty Name="BuyersInfoes" Relationship="Self.FK__BuyersInf__Perso__184C96B4" FromRole="Person" ToRole="BuyersInfo" />
+        </EntityType>
+        <EntityType Name="BuyersInfo">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="CarID" />
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="CarID" Type="Int32" Nullable="false" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <NavigationProperty Name="Car" Relationship="Self.FK__BuyersInf__CarID__1940BAED" FromRole="BuyersInfo" ToRole="Car" />
+          <NavigationProperty Name="City" Relationship="Self.FK__BuyersInf__CityI__1A34DF26" FromRole="BuyersInfo" ToRole="City" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__BuyersInf__Perso__184C96B4" FromRole="BuyersInfo" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK__BuyersInf__CarID__1940BAED">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="BuyersInfo" Type="Self.BuyersInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyersInfo">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyersInf__CityI__1A34DF26">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="BuyersInfo" Type="Self.BuyersInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyersInfo">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__CityID__16644E42">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyersInf__Perso__184C96B4">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="BuyersInfo" Type="Self.BuyersInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BuyersInfo">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MasterContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="BuyersInfoes" EntityType="Self.BuyersInfo" />
+          <AssociationSet Name="FK__BuyersInf__CarID__1940BAED" Association="Self.FK__BuyersInf__CarID__1940BAED">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="BuyersInfo" EntitySet="BuyersInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyersInf__CityI__1A34DF26" Association="Self.FK__BuyersInf__CityI__1A34DF26">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="BuyersInfo" EntitySet="BuyersInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__CityID__16644E42" Association="Self.FK__Person__CityID__16644E42">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyersInf__Perso__184C96B4" Association="Self.FK__BuyersInf__Perso__184C96B4">
+            <End Role="Person" EntitySet="People" />
+            <End Role="BuyersInfo" EntitySet="BuyersInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="MasterContext">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="masterModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CarName" ColumnName="CarName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="masterModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="masterModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyersInfoes">
+            <EntityTypeMapping TypeName="masterModel.BuyersInfo">
+              <MappingFragment StoreEntitySet="BuyersInfo">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

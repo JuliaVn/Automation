@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32407.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dapper_Tests", "Dapper_Tests\Dapper_Tests.csproj", "{16F24F64-2F95-4D39-B527-36273CF4D40D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF", "EF\EF.csproj", "{EC69BD93-C912-4966-A8CA-16FB215D3F44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB_Tests", "MongoDB_Tests\MongoDB_Tests.csproj", "{EF0CD454-5258-418D-B799-4037668E0A00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16F24F64-2F95-4D39-B527-36273CF4D40D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F24F64-2F95-4D39-B527-36273CF4D40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F24F64-2F95-4D39-B527-36273CF4D40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F24F64-2F95-4D39-B527-36273CF4D40D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC69BD93-C912-4966-A8CA-16FB215D3F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC69BD93-C912-4966-A8CA-16FB215D3F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC69BD93-C912-4966-A8CA-16FB215D3F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC69BD93-C912-4966-A8CA-16FB215D3F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0CD454-5258-418D-B799-4037668E0A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0CD454-5258-418D-B799-4037668E0A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0CD454-5258-418D-B799-4037668E0A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0CD454-5258-418D-B799-4037668E0A00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBB37FED-D2D8-4BDA-BAB7-FBFE9FB3E107}
+	EndGlobalSection
+EndGlobal

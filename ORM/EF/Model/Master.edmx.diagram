@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e4d302d1984441738bbcd7f5c5afc83b" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.Car" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.City" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Person" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.BuyersInfo" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="masterModel.FK__BuyersInf__CarID__1940BAED" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__BuyersInf__CityI__1A34DF26" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__Person__CityID__16644E42" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__BuyersInf__Perso__184C96B4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
